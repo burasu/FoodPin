@@ -89,27 +89,15 @@ class RestaurantTableViewController: UITableViewController {
         optionMenu.addAction(callAction)
         
         // Añadimos una nueva opción que marca si hemos visitado o no un lugar
-        if !self.restaurantIsVisited[indexPath.row] {
-            let isVisitedAction = UIAlertAction(title: "I've been here", style: .Default, handler: {
-                (action: UIAlertAction!) -> Void in
+        let isVisitedTitle = (restaurantIsVisited[indexPath.row]) ? "I've not been here" : "I've been here"
+        let isVisitedAction = UIAlertAction(title: isVisitedTitle, style: .Default, handler: {
+            (action: UIAlertAction!) -> Void in
             
-                let cell = tableView.cellForRowAtIndexPath(indexPath)
-                cell?.accessoryType = .Checkmark
-                self.restaurantIsVisited[indexPath.row] = true
-
-            })
-            optionMenu.addAction(isVisitedAction)
-        }
-        else {
-            let isNotVisitedAction = UIAlertAction(title: "I've not been here", style: .Default, handler: {
-                (action: UIAlertAction!) -> Void in
-                
-                let cell = tableView.cellForRowAtIndexPath(indexPath)
-                cell?.accessoryType = .None
-                self.restaurantIsVisited[indexPath.row] = false
-            })
-            optionMenu.addAction(isNotVisitedAction)
-        }
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell?.accessoryType = (self.restaurantIsVisited[indexPath.row]) ? .None : .Checkmark
+            self.restaurantIsVisited[indexPath.row] = (self.restaurantIsVisited[indexPath.row]) ? false : true
+        })
+        optionMenu.addAction(isVisitedAction)
         
         // Display the menu
         self.presentViewController(optionMenu, animated: true, completion: nil)
