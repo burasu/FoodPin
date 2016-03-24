@@ -57,14 +57,6 @@ class RestaurantTableViewController: UITableViewController {
         cell.thumbnailImageView.image = UIImage(named: restaurantImages[indexPath.row])
         cell.locationLabel.text = restaurantLocation[indexPath.row]
         cell.typeLabel.text = restaurantTypes[indexPath.row]
-        
-//        if restaurantIsVisited[indexPath.row] {
-//            cell.accessoryType = .Checkmark
-//        }
-//        else {
-//            cell.accessoryType = .None
-//        }
-        
         cell.accessoryType = restaurantIsVisited[indexPath.row] ? .Checkmark : .None
 
         return cell
@@ -103,49 +95,66 @@ class RestaurantTableViewController: UITableViewController {
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
+    // Método que nos permitirá crear eventos sobre las celdas
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            restaurantNames.removeAtIndex(indexPath.row)
+            restaurantLocation.removeAtIndex(indexPath.row)
+            restaurantTypes.removeAtIndex(indexPath.row)
+            restaurantIsVisited.removeAtIndex(indexPath.row)
+            restaurantImages.removeAtIndex(indexPath.row)
+            
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
+        }
+        
+//        tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
+    // Al utilizar el método de abajo no hace falta que definamos el de arriba si vamos a incluir métodos personalizados.
+    
+    // Personalizamos los eventos que pueden ejecutarse al deslizar la celda
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        // Social Sharing Button
+        let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share", handler: {
+            (action, indexPath) -> Void in
+         
+            let defaultText = "Just checking in at " + self.restaurantNames[indexPath.row]
+            if let imageToShare = UIImage(named: self.restaurantImages[indexPath.row]) {
+                let activityController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
+                self.presentViewController(activityController, animated: true, completion: nil)
+            }
+        })
+        
+        // Delete button
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete",handler: {
+            (action, indexPath) -> Void in
+            
+            // Delete the row from the data source
+            self.restaurantNames.removeAtIndex(indexPath.row)
+            self.restaurantLocation.removeAtIndex(indexPath.row)
+            self.restaurantTypes.removeAtIndex(indexPath.row)
+            self.restaurantIsVisited.removeAtIndex(indexPath.row)
+            self.restaurantImages.removeAtIndex(indexPath.row)
+            
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        })
+        
+        // Pruebo a añadir un botón más que no aparece en el tutorial. Probaré a insertar el evento de llamar al telefono del evento anterior.
+        let callAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Call", handler: {
+            (action, indexPath) -> Void in
+            
+            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later", preferredStyle: .Alert)
+            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alertMessage, animated: true, completion: nil)
+        
+        })
+        
+        callAction.backgroundColor = UIColor(red: 202.0/255.0, green: 202.0/255.0, blue: 203.0/255.0, alpha: 1.0)
+        shareAction.backgroundColor = UIColor(red: 28.0/255.0, green: 165.0/255.0, blue: 253.0/255.0, alpha: 1.0)
+        deleteAction.backgroundColor = UIColor(red: 255.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        
+        return [deleteAction, shareAction, callAction]
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
