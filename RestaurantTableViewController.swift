@@ -142,6 +142,10 @@ class RestaurantTableViewController: UITableViewController {
         return [deleteAction, shareAction, callAction]
     }
     
+    @IBAction func unwindToHomeScreen(segue:UIStoryboardSegue) {
+        
+    }
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
