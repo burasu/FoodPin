@@ -21,7 +21,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         title = restaurant.name
 
         // Do any additional setup after loading the view.
-        restaurantImageView.image = UIImage(named: restaurant.image)
+        restaurantImageView.image = UIImage(data: restaurant.image!)
         
         tableView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.2)
         tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -31,8 +31,8 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // Set the rating of the restaurant
-        if restaurant.rating != "" {
-            ratingButton.setImage(UIImage(named: restaurant.rating), forState: UIControlState.Normal)
+        if let rating = restaurant.rating where rating != "" {
+            ratingButton.setImage(UIImage(named: rating), forState: UIControlState.Normal)
         }
     }
     
@@ -74,7 +74,9 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             cell.valueLabel.text = restaurant.phoneNumber
         case 4:             // Ha estado ahí
             cell.fieldLabel.text = "Been here"
-            cell.valueLabel.text = (restaurant.isVisited) ? "Yes, I've been here" : "No"
+            if let isVisited = restaurant.isVisited?.boolValue {
+                cell.valueLabel.text = isVisited ? "Yes, I've been here before" : "No"
+            }
         default:
             cell.fieldLabel.text = ""
             cell.valueLabel.text = ""
@@ -92,6 +94,15 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             if let rating = reviewViewController.rating {
                 restaurant.rating = rating
                 ratingButton.setImage(UIImage(named: rating), forState: UIControlState.Normal)
+                
+                if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
+                    
+                    do {
+                        try managedObjectContext.save()
+                    } catch {
+                        print(error)
+                    }
+                }
             }
         }
     }
@@ -102,10 +113,10 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "showReview" {
-            let destinationController = segue.destinationViewController as! ReviewViewController
-            destinationController.restaurantImage = restaurant.image
-        }
+//        if segue.identifier == "showReview" {
+//            let destinationController = segue.destinationViewController as! ReviewViewController
+//            destinationController.restaurantImage = restaurant.image!
+//        }
         
         if segue.identifier == "showMap" {
             let destinationController = segue.destinationViewController as! MapViewController
