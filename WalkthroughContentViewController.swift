@@ -68,8 +68,6 @@ class WalkthroughContentViewController: UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(true, forKey: "hasViewedWalkthrough")
         
-        print("accede por aqui")
-        
         dismissViewControllerAnimated(true, completion: nil)
     }
     

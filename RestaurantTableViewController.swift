@@ -64,10 +64,27 @@ class RestaurantTableViewController: UITableViewController, NSFetchedResultsCont
         super.viewWillAppear(animated)
         
         navigationController?.hidesBarsOnSwipe = true
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let hasViewedWalkthrough = defaults.boolForKey("hasViewedWalkthrough")
+        
+        if hasViewedWalkthrough {
+            print("Ya vio el tutorial")
+        }
+        else {
+            print("No vio el tutorial")
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let hasViewedWalkthrough = defaults.boolForKey("hasViewedWalkthrough")
+        
+        if hasViewedWalkthrough {
+            return
+        }
         
         if let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("WalkthroughController") as? WalkthroughPageViewController {
             presentViewController(pageViewController, animated: true, completion: nil)
@@ -200,6 +217,9 @@ class RestaurantTableViewController: UITableViewController, NSFetchedResultsCont
         if segue.identifier == "showRestaurantDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationController = segue.destinationViewController as! RestaurantDetailViewController
+                
+                destinationController.hidesBottomBarWhenPushed = true
+                
                 destinationController.restaurant = (searchController.active) ? searchResults[indexPath.row] : restaurants[indexPath.row]
             }
         }
@@ -253,4 +273,18 @@ class RestaurantTableViewController: UITableViewController, NSFetchedResultsCont
             tableView.reloadData()
         }
     }
+    
+    @IBAction func resetWalkthrough(sender: AnyObject) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setBool(false, forKey: "hasViewedWalkthrough")
+        
+        let refreshAlert = UIAlertController(title: "Reset", message: "El tutorial se iniciará la proxima vez que se cargue la aplicación", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+    }
+    
 }
