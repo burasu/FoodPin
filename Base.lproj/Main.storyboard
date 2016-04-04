@@ -90,11 +90,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Food Pin" id="22W-kI-TJY">
-                        <barButtonItem key="leftBarButtonItem" title="Reset" id="zii-35-wlB">
-                            <connections>
-                                <action selector="resetWalkthrough:" destination="TKT-cv-fSb" id="7Oa-6R-Zgq"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rWy-1d-2K2">
                             <connections>
                                 <segue destination="WtJ-VM-ogv" kind="show" identifier="addRestaurant" id="gQE-rf-Si4"/>
@@ -480,7 +475,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="348-Ko-Kmw">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="348-Ko-Kmw">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </mapView>
                         </subviews>

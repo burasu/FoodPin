@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor(red: 0.0/255.0, green: 132.0/255.0, blue: 202.0/255.0, alpha: 1.0)
         UITabBar.appearance().barTintColor = UIColor.blackColor()
         
-        UITabBar.appearance().tintColor = UIColor.redColor()
+        UITabBar.appearance().tintColor = UIColor.whiteColor()
         UITabBar.appearance().selectionIndicatorImage = UIImage(named: "tabitem-selected")
         
         // Override point for customization after application launch.

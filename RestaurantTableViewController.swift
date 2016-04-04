@@ -64,16 +64,7 @@ class RestaurantTableViewController: UITableViewController, NSFetchedResultsCont
         super.viewWillAppear(animated)
         
         navigationController?.hidesBarsOnSwipe = true
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let hasViewedWalkthrough = defaults.boolForKey("hasViewedWalkthrough")
-        
-        if hasViewedWalkthrough {
-            print("Ya vio el tutorial")
-        }
-        else {
-            print("No vio el tutorial")
-        }
+
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -273,18 +264,5 @@ class RestaurantTableViewController: UITableViewController, NSFetchedResultsCont
             tableView.reloadData()
         }
     }
-    
-    @IBAction func resetWalkthrough(sender: AnyObject) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(false, forKey: "hasViewedWalkthrough")
         
-        let refreshAlert = UIAlertController(title: "Reset", message: "El tutorial se iniciará la proxima vez que se cargue la aplicación", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
-        }))
-        
-        presentViewController(refreshAlert, animated: true, completion: nil)
-    }
-    
 }
