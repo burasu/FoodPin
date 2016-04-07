@@ -134,10 +134,10 @@ class RestaurantTableViewController: UITableViewController, NSFetchedResultsCont
         
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         
-        print("Total item: \(restaurants.count)")
-        for name in restaurants {
-            print(name)
-        }
+//        print("Total item: \(restaurants.count)")
+//        for name in restaurants {
+//            print(name)
+//        }
     }
     
     // Personalizamos los eventos que pueden ejecutarse al deslizar la celda
