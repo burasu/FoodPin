@@ -40,6 +40,7 @@
                     <navigationItem key="navigationItem" title="Discover" id="2bx-sO-r5q"/>
                     <connections>
                         <outlet property="spinner" destination="HHw-Dn-ORc" id="Lxs-ZW-gju"/>
+                        <outlet property="table" destination="zew-TX-1u9" id="Uh2-2y-AUI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TvR-xW-4Aw" userLabel="First Responder" sceneMemberID="firstResponder"/>
