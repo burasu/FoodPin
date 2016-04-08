@@ -11,11 +11,19 @@ import CloudKit
 
 class DiscoverTableViewController: UITableViewController {
 
+    @IBOutlet var spinner:UIActivityIndicatorView!
+    
     var restaurants:[CKRecord] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Configuramos el spinner
+        spinner.hidesWhenStopped = true
+        spinner.center = view.center
+        view.addSubview(spinner)
+        spinner.startAnimating()
+        
         getRecordsFromCloud()
     }
 
@@ -38,7 +46,8 @@ class DiscoverTableViewController: UITableViewController {
         
         // Componemos la consulta a realizar
         let queryOperation = CKQueryOperation(query: query)
-        queryOperation.desiredKeys = ["name", "image"]
+//        queryOperation.desiredKeys = ["name", "image"]
+        queryOperation.desiredKeys = ["name"]
         queryOperation.queuePriority = .VeryHigh
         queryOperation.resultsLimit = 50
         queryOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
@@ -60,6 +69,7 @@ class DiscoverTableViewController: UITableViewController {
             
             print("Successfully retrieve the data from iCloud")
             NSOperationQueue.mainQueue().addOperationWithBlock() {
+                self.spinner.stopAnimating()
                 self.tableView.reloadData()
             }
             
@@ -79,7 +89,6 @@ class DiscoverTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return restaurants.count
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
@@ -88,10 +97,33 @@ class DiscoverTableViewController: UITableViewController {
         let restaurant = restaurants[indexPath.row]
         cell.textLabel?.text = restaurant.objectForKey("name") as? String
         
-        if let image = restaurant.objectForKey("image") {
-            let imageAsset = image as! CKAsset
-            cell.imageView?.image = UIImage(data: NSData(contentsOfURL: imageAsset.fileURL)!)
+        // Establecemos una imagen por defecto
+        cell.imageView?.image = UIImage(named: "photoalbum")
+        
+        // Obtenemos las imagenes de la nube en segundo plano
+        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        let fetchRecordsImageOperation = CKFetchRecordsOperation(recordIDs: [restaurant.recordID])
+        fetchRecordsImageOperation.desiredKeys = ["image"]
+        fetchRecordsImageOperation.queuePriority = .VeryHigh
+        
+        fetchRecordsImageOperation.perRecordCompletionBlock = {(record:CKRecord?, recordID:CKRecordID?, error:NSError?) -> Void in
+            if (error != nil) {
+                print("Failed to get restaurant image: \(error!.localizedDescription)")
+                return
+            }
+            
+            if let restaurantRecord = record {
+                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                    if let imageAsset = restaurantRecord.objectForKey("image") as? CKAsset {
+                        cell.imageView?.image = UIImage(data: NSData(contentsOfURL: imageAsset.fileURL)!)
+                        
+                        print("Mostrada imagen: \(imageAsset.fileURL)")                    
+                    }
+                }
+            }
         }
+        
+        publicDatabase.addOperation(fetchRecordsImageOperation)
 
         return cell
     }

@@ -38,6 +38,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Discover" id="2bx-sO-r5q"/>
+                    <connections>
+                        <outlet property="spinner" destination="HHw-Dn-ORc" id="Lxs-ZW-gju"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TvR-xW-4Aw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="HHw-Dn-ORc">
