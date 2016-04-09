@@ -1,35 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L9m-d9-nMR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F18b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L9m-d9-nMR">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Discover-->
         <scene sceneID="2be-mB-uWq">
             <objects>
                 <tableViewController id="LIL-VC-euT" customClass="DiscoverTableViewController" customModule="FoodPin" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zew-TX-1u9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="133" sectionHeaderHeight="28" sectionFooterHeight="28" id="zew-TX-1u9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Zt3-C6-hZy" style="IBUITableViewCellStyleDefault" id="UsB-J8-9Cr">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="133" id="UsB-J8-9Cr" customClass="DiscoverTableViewCell" customModule="FoodPin" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="133"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UsB-J8-9Cr" id="CZL-2F-kxF">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="132"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zt3-C6-hZy">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kfA-hh-vOA" userLabel="Bg Image View">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="133"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0o-Z7-vW7" userLabel="Type Label">
+                                            <rect key="frame" x="8" y="8" width="33" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="584" placeholderIntrinsicHeight="41" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gA1-TR-L2Y">
+                                            <rect key="frame" x="8" y="83" width="584" height="41"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvI-s7-HVo" userLabel="Name Label">
+                                                    <rect key="frame" x="0.0" y="0.0" width="584" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Yc-38-gSq" userLabel="Location Label">
+                                                    <rect key="frame" x="0.0" y="24" width="584" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kfA-hh-vOA" firstAttribute="centerY" secondItem="CZL-2F-kxF" secondAttribute="centerY" id="6J6-fL-dQd"/>
+                                        <constraint firstAttribute="trailing" secondItem="kfA-hh-vOA" secondAttribute="trailing" id="I8g-if-waP"/>
+                                        <constraint firstItem="gA1-TR-L2Y" firstAttribute="leading" secondItem="n0o-Z7-vW7" secondAttribute="leading" id="SBD-rp-1al"/>
+                                        <constraint firstItem="kfA-hh-vOA" firstAttribute="leading" secondItem="CZL-2F-kxF" secondAttribute="leading" id="cUa-IZ-URm"/>
+                                        <constraint firstItem="n0o-Z7-vW7" firstAttribute="top" secondItem="CZL-2F-kxF" secondAttribute="topMargin" id="hNc-rB-MCa"/>
+                                        <constraint firstItem="kfA-hh-vOA" firstAttribute="top" secondItem="CZL-2F-kxF" secondAttribute="top" id="hjO-qz-HtR"/>
+                                        <constraint firstItem="gA1-TR-L2Y" firstAttribute="bottom" secondItem="CZL-2F-kxF" secondAttribute="bottomMargin" id="nk9-ul-lP5"/>
+                                        <constraint firstItem="n0o-Z7-vW7" firstAttribute="leading" secondItem="CZL-2F-kxF" secondAttribute="leadingMargin" id="uDC-1Y-wPM"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bgImageView" destination="kfA-hh-vOA" id="r9J-zs-Zf8"/>
+                                    <outlet property="locationLabel" destination="7Yc-38-gSq" id="S4G-vl-fbE"/>
+                                    <outlet property="nameLabel" destination="uvI-s7-HVo" id="UIK-cH-n7F"/>
+                                    <outlet property="typeLabel" destination="n0o-Z7-vW7" id="akF-t8-XpA"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -40,7 +76,6 @@
                     <navigationItem key="navigationItem" title="Discover" id="2bx-sO-r5q"/>
                     <connections>
                         <outlet property="spinner" destination="HHw-Dn-ORc" id="Lxs-ZW-gju"/>
-                        <outlet property="table" destination="zew-TX-1u9" id="Uh2-2y-AUI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TvR-xW-4Aw" userLabel="First Responder" sceneMemberID="firstResponder"/>
