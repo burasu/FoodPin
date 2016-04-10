@@ -1,0 +1,45 @@
+/* Have you been here Field */
+"Been here" = "Been here";
+
+/* DONE */
+"DONE" = "ACEPTAR";
+
+/* Location/Address Field */
+"Location" = "Dirección";
+
+/* NEXT */
+"NEXT" = "SIGUIENTE";
+
+/* Name Field */
+"Name" = "Nombre";
+
+/* No, I haven't been here */
+"No" = "No";
+
+/* OK */
+"OK" = "Aceptar";
+
+/* Oops */
+"Oops" = "Oops";
+
+/* Phone Field */
+"Phone" = "Teléfono";
+
+/* Search restaurants... */
+"Search restaurants..." = "Buscar restaurantes...";
+
+/* Service Unavailable */
+"Service Unavailable" = "Servicio no disponible";
+
+/* Sorry, the call feature is not available yet. Please retry later */
+"Sorry, the call feature is not available yet. Please retry later" = "Sorry, the call feature is not available yet. Please retry later";
+
+/* Type Field */
+"Type" = "Type";
+
+/* We can't proceed because one of the fields is blank. Please note that all fields are required. */
+"We can't proceed because one of the fields is blank. Please note that all fields are required." = "We can't proceed because one of the fields is blank. Please note that all fields are required.";
+
+/* Yes, I've been here before */
+"Yes, I've been here before" = "Yes, I've been here before";
+

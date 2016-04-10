@@ -61,21 +61,21 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         // Configuramos la celda
         switch indexPath.row {
         case 0:             // Nombre
-            cell.fieldLabel.text = "Name"
+            cell.fieldLabel.text = NSLocalizedString("Name", comment: "Name Field")
             cell.valueLabel.text = restaurant.name
         case 1:             // Tipo
-            cell.fieldLabel.text = "Type"
+            cell.fieldLabel.text = NSLocalizedString("Type", comment: "Type Field")
             cell.valueLabel.text = restaurant.type
         case 2:             // Localidad
-            cell.fieldLabel.text = "Location"
+            cell.fieldLabel.text = NSLocalizedString("Location", comment: "Location/Address Field")
             cell.valueLabel.text = restaurant.location
         case 3:
-            cell.fieldLabel.text = "Phone"
+            cell.fieldLabel.text = NSLocalizedString("Phone", comment: "Phone Field")
             cell.valueLabel.text = restaurant.phoneNumber
         case 4:             // Ha estado ahí
-            cell.fieldLabel.text = "Been here"
+            cell.fieldLabel.text = NSLocalizedString("Been here", comment: "Have you been here Field")
             if let isVisited = restaurant.isVisited?.boolValue {
-                cell.valueLabel.text = isVisited ? "Yes, I've been here before" : "No"
+                cell.valueLabel.text = isVisited ? NSLocalizedString("Yes, I've been here before", comment: "Yes, I've been here before") : NSLocalizedString("No", comment: "No, I haven't been here")
             }
         default:
             cell.fieldLabel.text = ""
@@ -112,11 +112,6 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-//        if segue.identifier == "showReview" {
-//            let destinationController = segue.destinationViewController as! ReviewViewController
-//            destinationController.restaurantImage = restaurant.image!
-//        }
         
         if segue.identifier == "showMap" {
             let destinationController = segue.destinationViewController as! MapViewController

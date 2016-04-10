@@ -54,7 +54,7 @@ class RestaurantTableViewController: UITableViewController, NSFetchedResultsCont
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         
-        searchController.searchBar.placeholder = "Search restaurants..."
+        searchController.searchBar.placeholder = NSLocalizedString("Search restaurants...", comment: "Search restaurants...")
         searchController.searchBar.tintColor = UIColor.whiteColor()
         //searchController.searchBar.barTintColor = UIColor(red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
         searchController.searchBar.barTintColor = UIColor(red: 0.0/255.0, green: 132.0/255.0, blue: 202.0/255.0, alpha: 1.0)
@@ -133,11 +133,7 @@ class RestaurantTableViewController: UITableViewController, NSFetchedResultsCont
         }
         
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        
-//        print("Total item: \(restaurants.count)")
-//        for name in restaurants {
-//            print(name)
-//        }
+
     }
     
     // Personalizamos los eventos que pueden ejecutarse al deslizar la celda
@@ -175,8 +171,8 @@ class RestaurantTableViewController: UITableViewController, NSFetchedResultsCont
         let callAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Call", handler: {
             (action, indexPath) -> Void in
             
-            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later", preferredStyle: .Alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            let alertMessage = UIAlertController(title: NSLocalizedString("Service Unavailable", comment: "Service Unavailable"), message: NSLocalizedString("Sorry, the call feature is not available yet. Please retry later", comment: "Sorry, the call feature is not available yet. Please retry later"), preferredStyle: .Alert)
+            alertMessage.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .Default, handler: nil))
             self.presentViewController(alertMessage, animated: true, completion: nil)
             
         })
